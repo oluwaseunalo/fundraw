@@ -1,12 +1,13 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 
-import { DrawingPage, HomePage, LoginPage, ProfileUpdate, SignUpPage, UserDrawing } from './components'
+import { DrawingPage, HomePage, LoginPage, ProfileUpdate, SignUpPage, UserDrawing, Navbar} from './components'
 
 const App = () => {
   return (
 
     <div>
+      <Navbar/>
       <Routes>
       <Route exact path='/' element={<HomePage/>} />
       <Route exact path='/login' element={<LoginPage/>} />
