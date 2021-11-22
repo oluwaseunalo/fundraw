@@ -3,7 +3,9 @@ import {Routes, Route} from 'react-router-dom'
 
 import { DrawingPage, HomePage, LoginPage, ProfileUpdate, SignUpPage, UserDrawing, Navbar} from './components'
 
+
 const App = () => {
+  
   return (
 
     <div>
