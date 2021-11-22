@@ -2,10 +2,13 @@ import React from 'react'
 import {Grid, Typography, Button, Card, CardContent,  CardActions} from '@mui/material'
 import {Link} from 'react-router-dom'
 
+import useStyles from './styles'
+
 
 const Main = () => {
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.mainpage}>
       <Grid container justifyContent='center' spacing={3} display='flex'>
           <Grid item xs={12} sm={6} md={4} lg={3}>
              <Typography variant='h5'>Explore your creativity with FunDraw</Typography>

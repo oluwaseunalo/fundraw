@@ -1,5 +1,6 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
 
 import { DrawingPage, HomePage, LoginPage, ProfileUpdate, SignUpPage, UserDrawing, Navbar} from './components'
 
@@ -9,6 +10,7 @@ const App = () => {
   return (
 
     <div>
+      <CssBaseline/>
       <Navbar/>
       <Routes>
       <Route exact path='/' element={<HomePage/>} />

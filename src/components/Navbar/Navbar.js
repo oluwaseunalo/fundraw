@@ -31,7 +31,7 @@ const NavLogin = () =>{
         <div>
         <AppBar className={classes.nav}>
           <Toolbar className={classes.tool}>  
-            <Link to='/'><ArrowBack/></Link>
+            <Link to='/' className={classes.links}><ArrowBack/></Link>
             <Typography variant='p'  className={classes.logo}><Link to='/' className={classes.links}>FunDraw</Link></Typography>
             <Typography variant='p' className={classes.item}><Link to='/' className={classes.links}>Home</Link></Typography>
             <Typography variant='p' className={classes.action}><Link to='/signup' className={classes.links}>Sign up</Link></Typography>
