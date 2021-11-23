@@ -1,77 +1,110 @@
-import React from 'react'
-import { Stage, Layer, Line, Text } from 'react-konva';
+import React, {useState, useRef, useEffect, useCallback} from 'react'
+import { SketchPicker } from 'react-color';
+import { Button } from '@mui/material';
+
 
 import useStyles from './styles'
 
 const UserDrawing = () => {
+
   const classes = useStyles();
-  const [tool, setTool] = React.useState('pen');
-  const [lines, setLines] = React.useState([]);
-  const isDrawing = React.useRef(false);
 
-  const handleMouseDown = (e) => {
-    isDrawing.current = true;
-    const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, { tool, points: [pos.x, pos.y] }]);
-  };
+ const [color, setColor] = useState('');
+ const [position, setPosition] = useState({x:0, y:0});
+ const [mouseDown, setMouseDown] = useState(false);
 
-  const handleMouseMove = (e) => {
-    // no drawing - skipping
-    if (!isDrawing.current) {
-      return;
-    }
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
-    let lastLine = lines[lines.length - 1];
-    // add point
-    lastLine.points = lastLine.points.concat([point.x, point.y]);
+ const eraseColor = ()=>{
+  setColor('#FFFFFF')
+}
+ 
 
-    // replace last
-    lines.splice(lines.length - 1, 1, lastLine);
-    setLines(lines.concat());
-  };
+ const canvasRef = useRef(null);
+ const ctx = useRef(null);
 
-  const handleMouseUp = () => {
-    isDrawing.current = false;
-  };
+ const changeColor = (color)=>{
+        setColor(color.hex)
+ }
+
+ const draw = useCallback((x, y)=>{
+   if(mouseDown){
+      ctx.current.beginPath();
+      ctx.current.strokeStyle = color;
+      ctx.current.lineWidth= 10;
+      ctx.current.lineJoin = 'round';
+      ctx.current.moveTo(position.x, position.y);
+      ctx.current.lineTo(x,y);
+      ctx.current.closePath();
+      ctx.current.stroke();
+
+      setPosition({x,y})
+
+   } else if (mouseDown && color==='#FFFFFF'){
+    ctx.current.beginPath();
+    ctx.current.lineWidth= 30;
+    ctx.current.lineJoin = 'round';
+    ctx.current.moveTo(position.x, position.y);
+    ctx.current.lineTo(x,y);
+    ctx.current.closePath();
+   }
+
+   
+ },[position, setPosition, mouseDown, color]);
+
+useEffect(()=>{
+  if(canvasRef.current){
+    ctx.current= canvasRef.current.getContext('2d');}
+  },[]);
+
+  const onMouseDown = (e)=> {
+     setPosition({ x: e.pageX,
+      y: e.pageY})
+      setMouseDown(true);
+  }
+  
+
+const onMouseUp =(e)=>{
+  setMouseDown(false);
+}
+
+
+   const onMouseMove=(e)=>{
+     if(mouseDown){
+        draw(e.pageX, e.pageY);
+     }
+     else{setMouseDown(false)}
+   }
+
+const removeDrawings= ()=>{
+  ctx.current.clearRect(0, 0, ctx.current.canvas.width, ctx.current.canvas.height)
+}
+
+const downloadDrawings = async () => {
+  const image = canvasRef.current.toDataURL('image/png');
+  const blob = await (await fetch(image)).blob();
+  const blobURL = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = blobURL;
+  a.downloadDrawings = 'image.png';
+  a.click();
+}
+
 
   return (
-    <div className={classes.drawingpage}>
-      <Stage
-        width={window.innerWidth}
-        height={window.innerHeight}
-        onMouseDown={handleMouseDown}
-        onMousemove={handleMouseMove}
-        onMouseup={handleMouseUp}
-      >
-        <Layer>
-          <Text text="Just start drawing" x={5} y={30} />
-          {lines.map((line, i) => (
-            <Line
-              key={i}
-              points={line.points}
-              stroke="#df4b26"
-              strokeWidth={5}
-              tension={0.5}
-              lineCap="round"
-              globalCompositeOperation={
-                line.tool === 'eraser' ? 'destination-out' : 'source-over' }
-                />
-              ))}
-            </Layer>
-          </Stage>
-          <select
-            value={tool}
-            onChange={(e) => {
-              setTool(e.target.value);
-            }}
-          >
-            <option value="pen">Pen</option>
-            <option value="eraser">Eraser</option>
-          </select>
-        </div>
-      );
-  
+      <div>
+      <canvas style={{border: '15px solid blue' }} width='500px' height='500px' ref={canvasRef}
+      onMouseUp={onMouseUp}
+      onMouseDown={onMouseDown}
+      onMouseMove ={onMouseMove}
+      ></canvas>
+      <Button variant='outlined' color='secondary' onClick = {removeDrawings}>Remove Drawings </Button>
+      <Button variant='outlined' color='secondary'>Save </Button>
+      <Button variant='outlined' color='secondary' onClick= {eraseColor}>Erase</Button>
+      <Button variant='outlined' color='secondary' onClick={downloadDrawings}>Download</Button>
+      <SketchPicker color={color} onChange={changeColor}/>
+    </div>
+   
+  );
+
 }
 
 export default UserDrawing;
