@@ -30,6 +30,11 @@ import { makeStyles } from '@mui/styles';
     links: {
       textDecoration: 'none',
       color: 'white'
+    },
+
+    profile: {
+      right: 340,
+      position: 'absolute'
     }
 
 
