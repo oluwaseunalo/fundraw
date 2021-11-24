@@ -8,22 +8,36 @@ const Main = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Box>
+      <Box className={classes.box}>
         <Typography variant="h6" color="white">
           Email
         </Typography>
-        <TextField variant="outlined" required size="small" />
+        <TextField
+          variant="outlined"
+          required
+          size="small"
+          className={classes.textfield}
+        />
         <Typography variant="h6" color="white">
           Password
         </Typography>
-        <TextField variant="outlined" required size="small" />
+        <TextField
+          variant="outlined"
+          required
+          size="small"
+          className={classes.textfield}
+        />
+        <br />
+        <Link to="/drawing" className={classes.button}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.profile}
+          >
+            Login
+          </Button>
+        </Link>
       </Box>
-      <br />
-      <Link to="/drawing" className={classes.button}>
-        <Button variant="contained" color="secondary">
-          Login
-        </Button>
-      </Link>
     </div>
   );
 };

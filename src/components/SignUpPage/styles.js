@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-  box: {
+  root: {
     marginTop: 60,
 
     background:
@@ -9,12 +9,31 @@ const useStyles = makeStyles({
 
     width: "100vw",
     height: "100vh",
-
-    justifyContent: "center",
+    position: "relative",
   },
+
   button: {
     textDecoration: "none",
-    color: "white",
+  },
+
+  box: {
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    left: 380,
+    bottom: 370,
+  },
+
+  textfield: {
+    backgroundColor: "white",
+    borderRadius: "5px",
+    width: 450,
+  },
+
+  profile: {
+    width: 450,
+    position: "absolute",
+    top: 20,
   },
 });
 
