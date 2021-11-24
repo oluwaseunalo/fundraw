@@ -1,29 +1,31 @@
-import React from 'react'
-import {Typography, FormControl, TextField, Box, Button} from '@mui/material'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Typography, TextField, Box, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
-
-
+import useStyles from "./styles";
 
 const Main = () => {
+  const classes = useStyles();
   return (
-    <Box display='block'>
-    <FormControl variant='standard'>
-      <Typography variant='h6'>Email</Typography>
-      <TextField variant='outlined' required/>
-    </FormControl>
-    <FormControl variant='standard'>
-      <Typography variant='h6'>Password</Typography>
-      <TextField variant='outlined' required/>
-    </FormControl>
-    <Link to='/login'><Button variant='contained'>Login</Button></Link>
+    <div className={classes.root}>
+      <Box>
+        <Typography variant="h6" color="white">
+          Email
+        </Typography>
+        <TextField variant="outlined" required size="small" />
+        <Typography variant="h6" color="white">
+          Password
+        </Typography>
+        <TextField variant="outlined" required size="small" />
+      </Box>
+      <br />
+      <Link to="/drawing" className={classes.button}>
+        <Button variant="contained" color="secondary">
+          Login
+        </Button>
+      </Link>
+    </div>
+  );
+};
 
-   
-      
-    </Box>
-  )
-}
-
-export default Main
-
-
+export default Main;
