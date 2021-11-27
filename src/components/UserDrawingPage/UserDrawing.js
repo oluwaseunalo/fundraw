@@ -8,13 +8,14 @@ const UserDrawing = () => {
   const classes = useStyles();
 
   const [color, setColor] = useState("");
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 1, y: 1 });
   const [mouseDown, setMouseDown] = useState(false);
 
   const eraseColor = () => {
     setColor("#FFFFFF");
   };
 
+  const canvasRef = useRef(null);
   const canvas = useRef(null);
 
   const changeColor = (color) => {
@@ -36,7 +37,7 @@ const UserDrawing = () => {
         setPosition({ x, y });
       } else if (mouseDown && color === "#FFFFFF") {
         canvas.current.beginPath();
-        canvas.current.lineWidth = 30;
+        canvas.current.lineWidth = 10;
         canvas.current.lineJoin = "round";
         canvas.current.moveTo(position.x, position.y);
         canvas.current.lineTo(x, y);
@@ -79,12 +80,12 @@ const UserDrawing = () => {
   };
 
   const downloadDrawings = async () => {
-    const image = canvas.current.toDataURL("image/png");
+    const image = canvasRef.current.toDataURL("image/png");
     const blob = await (await fetch(image)).blob();
     const blobURL = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = blobURL;
-    a.downloadDrawings = "image.png";
+    a.download = "image.png";
     a.click();
   };
 
@@ -102,6 +103,7 @@ const UserDrawing = () => {
         onMouseUp={onMouseUp}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
+        onMouseLeave={onMouseUp}
       ></canvas>
       <SketchPicker
         color={color}

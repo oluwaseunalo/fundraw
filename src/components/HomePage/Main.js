@@ -41,8 +41,7 @@ const Main = () => {
           <Card>
             <CardContent>
               <Typography variant="h6">
-                {" "}
-                loremipsumashjbjafshgdslhGFHGALSHDFGHJSDGFHAGSDHFGSFDHJBFNYDBYSDFLAGSDHGHHGFLjsljfhdgjhdfjghöfhjsk
+                loremipsumashjbjaBYSDFLAGfjghöfhjsk
               </Typography>
             </CardContent>
             <CardActions>
@@ -54,7 +53,7 @@ const Main = () => {
           <Card>
             <CardContent>
               <Typography variant="h6">
-                loremipsumashjbjafshgdslhGFHGALSHDFGHJSDGFHAGSDHFGSFDHJBFNYDBYSDFLAGSDHGHHGFLjsljfhdgjhdfjghöfhjsk
+                loremiFLAGSDHGHHGFLjsljfhdgjhdfjg
               </Typography>
             </CardContent>
             <CardActions>

@@ -49,7 +49,7 @@ const SignUpPage = () => {
           className={classes.textfield}
         />
         <br />
-        <Link to="/drawing" className={classes.button}>
+        <Link to="/login" className={classes.button}>
           <Button
             variant="contained"
             color="secondary"

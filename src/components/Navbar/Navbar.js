@@ -11,7 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const NavHomepage = () => {
     return (
-      <div className={classes.container}>
+      <div>
         <AppBar className={classes.nav}>
           <Toolbar className={classes.tool}>
             <Typography variant="p" className={classes.logo}>
@@ -19,12 +19,12 @@ const Navbar = () => {
                 FunDraw
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.item}>
+            <Typography variant="p" className={classes.contact}>
               <Link to="/" className={classes.links}>
                 Contact
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.action}>
+            <Typography variant="p" className={classes.signin}>
               <Link to="/login" className={classes.links}>
                 Sign in
               </Link>
@@ -48,12 +48,12 @@ const Navbar = () => {
                 FunDraw
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.item}>
+            <Typography variant="p" className={classes.contact}>
               <Link to="/" className={classes.links}>
                 Home
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.action}>
+            <Typography variant="p" className={classes.signin}>
               <Link to="/signup" className={classes.links}>
                 Sign up
               </Link>
@@ -76,12 +76,12 @@ const Navbar = () => {
                 FunDraw
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.item}>
+            <Typography variant="p" className={classes.contact}>
               <Link to="/" className={classes.links}>
                 Home
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.action}>
+            <Typography variant="p" className={classes.signin}>
               <Link to="/login" className={classes.links}>
                 Sign in
               </Link>
@@ -105,17 +105,13 @@ const Navbar = () => {
                 FunDraw
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.item}>
-              <Link to="/" className={classes.links}>
-                Home
-              </Link>
-            </Typography>
+
             <Typography variant="p" className={classes.profile}>
               <Link to="/profile" className={classes.links}>
                 Update Profile
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.action}>
+            <Typography variant="p" className={classes.signin}>
               <Link to="/" className={classes.links}>
                 Sign Out
               </Link>
@@ -139,7 +135,7 @@ const Navbar = () => {
                 FunDraw
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.item}>
+            <Typography variant="p" className={classes.contact}>
               <Link to="/" className={classes.links}>
                 Home
               </Link>
@@ -149,7 +145,7 @@ const Navbar = () => {
                 Drawing Board
               </Link>
             </Typography>
-            <Typography variant="p" className={classes.action}>
+            <Typography variant="p" className={classes.signout}>
               <Link to="/" className={classes.links}>
                 Sign Out
               </Link>
