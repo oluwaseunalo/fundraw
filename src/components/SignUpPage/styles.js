@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     position: "absolute",
     left: 380,
-    bottom: 370,
+    top: 50,
   },
 
   textfield: {

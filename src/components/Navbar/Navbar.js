@@ -1,12 +1,14 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import useStyles from "./styles";
 
 const Navbar = () => {
+  const { logout } = useAuth0();
   const classes = useStyles();
   const location = useLocation();
   const NavHomepage = () => {
@@ -112,9 +114,9 @@ const Navbar = () => {
               </Link>
             </Typography>
             <Typography variant="p" className={classes.signin}>
-              <Link to="/" className={classes.links}>
+              <Button className={classes.links} onClick={() => logout()}>
                 Sign Out
-              </Link>
+              </Button>
             </Typography>
           </Toolbar>
         </AppBar>

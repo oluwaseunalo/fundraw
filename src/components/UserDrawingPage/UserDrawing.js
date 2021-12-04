@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { SketchPicker } from "react-color";
 import { Button } from "@mui/material";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import useStyles from "./styles";
 
 const UserDrawing = () => {
+  const { user } = useAuth0();
   const classes = useStyles();
 
   const [color, setColor] = useState("");
@@ -90,7 +92,7 @@ const UserDrawing = () => {
   };
 
   return (
-    <div className={classes.drawingPage}>
+    <div className={classes.drawingPage} data={user}>
       <canvas
         style={{
           border: "15px solid",
